@@ -1,0 +1,466 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Travel Itinerary Planner
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css" rel="stylesheet"/>
+  <style>
+   .drag-container {
+    display: flex;
+    justify-content: space-between;
+   }
+   .drag-column {
+    width: 48%;
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 0.5rem;
+   }
+   .drag-item {
+    background-color: #ffffff;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    cursor: grab;
+   }
+  </style>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <header class="bg-blue-600 text-white p-4">
+   <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-2xl font-bold">
+     Travel Itinerary Planner
+    </h1>
+    <nav>
+     <ul class="flex space-x-4">
+      <li>
+       <a class="hover:underline" href="#">
+        Home
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#">
+        Destinations
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#">
+        Tours
+       </a>
+      </li>
+      <li>
+       <a class="hover:underline" href="#">
+        Contact
+       </a>
+      </li>
+     </ul>
+    </nav>
+   </div>
+  </header>
+  <main class="container mx-auto p-4">
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Plan Your Trip
+    </h2>
+    <form class="space-y-4">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="destination">
+       Destination
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="destination" name="destination" type="text"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="start-date">
+       Start Date
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="start-date" name="start-date" type="date"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="end-date">
+       End Date
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="end-date" name="end-date" type="date"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="group-size">
+       Group Size
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="group-size" name="group-size" type="number"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="preferences">
+       Preferences
+      </label>
+      <textarea class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="preferences" name="preferences" rows="4"></textarea>
+     </div>
+     <button class="w-full bg-blue-600 text-white p-2 rounded-md" type="submit">
+      Create Itinerary
+     </button>
+    </form>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Drag and Drop Scheduling
+    </h2>
+    <div class="drag-container">
+     <div class="drag-column" id="available-activities">
+      <h3 class="text-lg font-bold mb-2">
+       Available Activities
+      </h3>
+      <div class="drag-item">
+       Visit Eiffel Tower
+      </div>
+      <div class="drag-item">
+       Louvre Museum Tour
+      </div>
+      <div class="drag-item">
+       Seine River Cruise
+      </div>
+      <div class="drag-item">
+       Notre Dame Cathedral Visit
+      </div>
+      <div class="drag-item">
+       Montmartre Walking Tour
+      </div>
+     </div>
+     <div class="drag-column" id="scheduled-activities">
+      <h3 class="text-lg font-bold mb-2">
+       Scheduled Activities
+      </h3>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Integrated Booking
+    </h2>
+    <div class="space-y-4">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="hotel-booking">
+       Hotel Booking
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="hotel-booking" name="hotel-booking" type="text" placeholder="Enter hotel name or booking link"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="transport-booking">
+       Transport Booking
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="transport-booking" name="transport-booking" type="text" placeholder="Enter transport details or booking link"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="activity-booking">
+       Activity Booking
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="activity-booking" name="activity-booking" type="text" placeholder="Enter activity details or booking link"/>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Budget Tracker
+    </h2>
+    <div class="space-y-4">
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="total-budget">
+       Total Budget
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="total-budget" name="total-budget" type="number" placeholder="Enter total budget"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="spent-amount">
+       Amount Spent
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="spent-amount" name="spent-amount" type="number" placeholder="Enter amount spent"/>
+     </div>
+     <div>
+      <label class="block text-sm font-medium text-gray-700" for="remaining-budget">
+       Remaining Budget
+      </label>
+      <input class="mt-1 block w-full p-2 border border-gray-300 rounded-md" id="remaining-budget" name="remaining-budget" type="number" placeholder="Enter remaining budget" readonly/>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Expert-Level Destination Insights
+    </h2>
+    <div class="space-y-4">
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       Paris, France
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Eiffel Tower, Louvre Museum, Notre Dame Cathedral, Montmartre.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Greet with a kiss on both cheeks, respect meal times, dress elegantly.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Metro, buses, taxis, bike rentals.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> Le Jules Verne, L'Ambroisie, Le Meurice, Café de Flore.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       Rome, Italy
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Colosseum, Vatican Museums, Trevi Fountain, Pantheon.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Dress modestly in churches, avoid eating on the go, greet with a handshake.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Metro, buses, trams, taxis.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> La Pergola, Roscioli, Trattoria Da Enzo, Pizzarium.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       Beijing, China
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Great Wall of China, Forbidden City, Temple of Heaven, Summer Palace.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Bow slightly when greeting, avoid pointing with your finger, respect elders.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Subway, buses, taxis, bike rentals.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> Da Dong Roast Duck, TRB Hutong, Din Tai Fung, Quanjude.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       Sydney, Australia
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Sydney Opera House, Sydney Harbour Bridge, Bondi Beach, Taronga Zoo.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Greet with a handshake, respect personal space, be punctual.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Trains, buses, ferries, taxis.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> Quay, Bennelong, Tetsuya's, Rockpool Bar & Grill.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       Tokyo, Japan
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Tokyo Tower, Senso-ji Temple, Meiji Shrine, Shibuya Crossing.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Bow when greeting, remove shoes indoors, avoid loud conversations in public.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Trains, subways, buses, taxis.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> Sukiyabashi Jiro, Sushi Saito, Narisawa, Ichiran Ramen.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <h3 class="text-lg font-bold">
+       New York City, USA
+      </h3>
+      <p class="text-gray-700">
+       <strong>Must-Visit Attractions:</strong> Times Square, Central Park, Statue of Liberty, Empire State Building.
+      </p>
+      <p class="text-gray-700">
+       <strong>Local Customs:</strong> Greet with a handshake, tip service workers, be mindful of personal space.
+      </p>
+      <p class="text-gray-700">
+       <strong>Transportation Options:</strong> Subway, buses, taxis, bike rentals.
+      </p>
+      <p class="text-gray-700">
+       <strong>Dining Recommendations:</strong> Le Bernardin, Katz's Delicatessen, Peter Luger Steak House, Joe's Pizza.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Popular Destinations
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A scenic view of the Eiffel Tower in Paris, France" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/ENXGex6WdNVmWS5krjWFY2Hpy7owlEHQimPDgI49uOg2epAUA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       Paris, France
+      </h3>
+      <p class="text-gray-700">
+       Explore the city of love with its iconic landmarks and exquisite cuisine.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A beautiful view of the Colosseum in Rome, Italy" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/nLr3PrBYFZ4UJ9dfoy7BpqVSZzQaLZg4Jx2IQr8HKnF1epAUA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       Rome, Italy
+      </h3>
+      <p class="text-gray-700">
+       Discover the ancient ruins and vibrant culture of the Eternal City.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A stunning view of the Great Wall of China" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/yOZF4Cj4czIwKNVU1lhGMnfhWhm88Lv1eKc2r3ynBpx09pAUA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       Beijing, China
+      </h3>
+      <p class="text-gray-700">
+       Experience the rich history and modern marvels of China's capital.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A picturesque view of the Sydney Opera House in Australia" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/1OIFzMFYN9oHBFG4tJOr26uWq01zeWPSVRcCMlhk8ty3epAUA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       Sydney, Australia
+      </h3>
+      <p class="text-gray-700">
+       Enjoy the stunning beaches and iconic landmarks of Sydney.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A breathtaking view of Mount Fuji in Japan" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/44WbwiG8DvruDZJ7TnSYmeAkSXUeJhoYBEhNpMVNW20s9pAUA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       Tokyo, Japan
+      </h3>
+      <p class="text-gray-700">
+       Immerse yourself in the unique blend of tradition and innovation in Tokyo.
+      </p>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg">
+      <img alt="A vibrant view of Times Square in New York City, USA" class="w-full h-40 object-cover rounded-md mb-2" height="200" src="https://storage.googleapis.com/a1aa/image/lNXdbb8bXALLE1fhpncfoeAVG9NaMPfvnB7fvrfTjABldfUAKA.jpg" width="300"/>
+      <h3 class="text-lg font-bold">
+       New York City, USA
+      </h3>
+      <p class="text-gray-700">
+       Experience the hustle and bustle of the city that never sleeps.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+        Upcoming Tours
+    </h2>
+    <div class="space-y-4">
+     <div class="bg-gray-200 p-4 rounded-lg flex items-center">
+      <img alt="A group of tourists exploring the streets of Paris" class="w-24 h-24 object-cover rounded-lg mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/3muei6Oq5wRzRSxKlZSv0W4MZp0VrDO3HOZXoiVvgCeLXeAoA.jpg" width="100"/>
+      <div>
+       <h3 class="text-lg font-bold">
+        Paris City Tour
+       </h3>
+       <p class="text-gray-700">
+        Join us for a 5-day tour of Paris, including visits to the Eiffel Tower, Louvre Museum, and more.
+       </p>
+      </div>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg flex items-center">
+      <img alt="Tourists enjoying a gondola ride in Venice" class="w-24 h-24 object-cover rounded-lg mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/j4ukqcVf2D3ucSiv66ep03Y3PuWhWluOFIvSsDgM6B7SXeAoA.jpg" width="100"/>
+      <div>
+       <h3 class="text-lg font-bold">
+        Venice and Rome Tour
+       </h3>
+       <p class="text-gray-700">
+        Experience the beauty of Venice and the history of Rome in this 7-day tour.
+       </p>
+      </div>
+     </div>
+     <div class="bg-gray-200 p-4 rounded-lg flex items-center">
+      <img alt="Tourists walking along the Great Wall of China" class="w-24 h-24 object-cover rounded-lg mr-4" height="100" src="https://storage.googleapis.com/a1aa/image/ZfHDsi2FwRTzW66oZn2zt5FAZpE9C3jqsijDdVJJWZMsLPAKA.jpg" width="100"/>
+      <div>
+       <h3 class="text-lg font-bold">
+        China Highlights Tour
+       </h3>
+       <p class="text-gray-700">
+        Explore the Great Wall, Forbidden City, and more in this 10-day tour of China.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+   <section class="bg-white p-6 rounded-lg shadow-lg mb-6">
+    <h2 class="text-xl font-bold mb-4">
+     Budget Tracker
+    </h2>
+    <form class="space-y-4">
+     <div>
+      <label class="block text-gray-700" for="expense-name">
+       Expense Name
+      </label>
+      <input class="w-full p-2 border border-gray-300 rounded" id="expense-name" placeholder="Enter expense name" type="text"/>
+     </div>
+     <div>
+      <label class="block text-gray-700" for="expense-amount">
+       Amount
+      </label>
+      <input class="w-full p-2 border border-gray-300 rounded" id="expense-amount" placeholder="Enter amount" type="number"/>
+     </div>
+     <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" type="submit">
+      Add Expense
+     </button>
+    </form>
+    <div class="mt-6">
+     <h3 class="text-lg font-bold mb-2">
+      Expense List
+     </h3>
+     <ul class="space-y-2">
+      <li class="bg-gray-200 p-4 rounded-lg flex justify-between items-center">
+       <span>
+        Flight Tickets
+       </span>
+       <span>
+        $500
+       </span>
+      </li>
+      <li class="bg-gray-200 p-4 rounded-lg flex justify-between items-center">
+       <span>
+        Hotel Accommodation
+       </span>
+       <span>
+        $300
+       </span>
+      </li>
+      <li class="bg-gray-200 p-4 rounded-lg flex justify-between items-center">
+       <span>
+        Food and Drinks
+       </span>
+       <span>
+        $200
+       </span>
+      </li>
+     </ul>
+     <div class="mt-4 p-4 bg-gray-100 rounded-lg">
+      <h4 class="text-lg font-bold">
+       Total Expense: $1000
+      </h4>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-blue-600 text-white p-4">
+   <div class="container mx-auto text-center">
+    <p>
+     © 2023 Travel Itinerary Planner. All rights reserved.
+    </p>
+   </div>
+  </footer>
+ </body>
+</html>
